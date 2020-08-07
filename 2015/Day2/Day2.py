@@ -9,7 +9,7 @@ while True:
 	if not line:
 		break
 
-	dimStr= line.split('x')
+	dimStr = line.split('x')
 
 	l = int(dimStr[0])
 	w = int(dimStr[1])
