@@ -2,12 +2,7 @@ santa_location = [0,0]
 houses_visited = {tuple(santa_location)}
 
 with open("input.txt", 'r') as input_file:
-	while True:
-		line = input_file.readline()
-
-		if not line:
-			break
-
+	for line in input_file:
 		for char in line:
 			if char == '^':
 				santa_location[0] += 1
