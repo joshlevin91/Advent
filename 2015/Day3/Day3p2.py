@@ -1,7 +1,3 @@
-santa_location = [0,0]
-robo_santa_location = [0,0]
-houses_visited = {tuple(santa_location)}
-
 def add_to_visited_houses(char, location, houses_visited):
 	if char == '^':
 		location[0] += 1
@@ -14,19 +10,24 @@ def add_to_visited_houses(char, location, houses_visited):
 
 	houses_visited.add(tuple(location))
 
-	return location, houses_visited
+def main():
+	santa_location = [0,0]
+	robo_santa_location = [0,0]
+	houses_visited = {tuple(santa_location)}
 
-with open("input.txt", 'r') as input_file:
+	with open("input.txt", 'r') as input_file:
 
-	counter = 0
+		counter = 0
 
-	for line in input_file:
-		for char in line:
-			if (counter % 2 == 0):
-				santa_location, houses_visited = add_to_visited_houses(char, santa_location, houses_visited)
-			else:
-				robo_santa_location, houses_visited = add_to_visited_houses(char, robo_santa_location, houses_visited)
+		for line in input_file:
+			for char in line:
+				if (counter % 2 == 0):
+					add_to_visited_houses(char, santa_location, houses_visited)
+				else:
+					add_to_visited_houses(char, robo_santa_location, houses_visited)
 
-			counter += 1
+				counter += 1
 
-print('Number of houses visited:', len(houses_visited))
+	print('Number of houses visited:', len(houses_visited))
+
+main()
