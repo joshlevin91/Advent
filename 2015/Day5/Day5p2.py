@@ -1,5 +1,3 @@
-import re
-
 def main():
 
 	n_nice_strings = 0;
