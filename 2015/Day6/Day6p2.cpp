@@ -7,8 +7,7 @@
 
 using namespace std;
 
-void setCorners(array<int, 4>& corners, string line, int len);
-vector<string> parseString(string s);
+string setCorners(array<int, 4>& corners, string line);
 
 int main(){
 
@@ -29,12 +28,10 @@ int main(){
 	while(getline(inputFile, line)){
 
 		array<int, 4> corners;
+		string instructions = setCorners(corners, line);
 
 		// Follow turn on instructions
-		if (line.rfind("turn on", 0) == 0){
-
-			setCorners(corners, line, 8);
-
+		if (instructions == "turn on"){
 			for (int i = corners[0]; i <= corners[2]; i++){
 				for (int j = corners[1]; j <= corners[3]; j++){
 					lights[i][j]++;
@@ -43,10 +40,7 @@ int main(){
 		}
 
 		// Follow turn off instructions
-		else if (line.rfind("turn off", 0) == 0){
-
-			setCorners(corners, line, 9);
-
+		else if (instructions == "turn off"){
 			for (int i = corners[0]; i <= corners[2]; i++){
 				for (int j = corners[1]; j <= corners[3]; j++){
 					if (lights[i][j] > 0){
@@ -57,10 +51,7 @@ int main(){
 		}
 
 		// Follow toggle instructions
-		else if(line.rfind("toggle", 0) == 0){
-
-			setCorners(corners, line, 7);
-
+		else if(instructions == "toggle"){
 			for (int i = corners[0]; i <= corners[2]; i++){
 				for (int j = corners[1]; j <= corners[3]; j++){
 					lights[i][j] += 2;
@@ -81,24 +72,22 @@ int main(){
 	cout << totalBrightness << endl;
 }
 
-// Set corners listed in instructions
-void setCorners(array<int, 4>& corners, string line, int len){
+// Set corners and return instructions
+string setCorners(array<int, 4>& corners, string line){
 
-	line = line.substr(len);
-	vector<string> tokens = parseString(line);
+	size_t pos = line.find_first_of("123456789");
+
+	string instructions = line.substr(0, pos-1);
+	string restOfLine = line.substr(pos);
+
+	regex delims("[, ]");
+	sregex_token_iterator first{restOfLine.begin(), restOfLine.end(), delims, -1}, last;
+	vector<string> tokens{first, last};
 
 	corners[0] = stoi(tokens[0]);
 	corners[1] = stoi(tokens[1]);
 	corners[2] = stoi(tokens[3]);
 	corners[3] = stoi(tokens[4]);
-}
 
-// Parse string and return tokens delimited by a comma or space
-vector<string> parseString(string s){
-
-	regex delims("[, ]");
-	sregex_token_iterator first{s.begin(), s.end(), delims, -1}, last;
-	vector<string> tokens{first, last};
-
-	return tokens;
+	return instructions;
 }
