@@ -6,6 +6,7 @@ def split(nums, n, inner = False):
 
         firsts = itertools.combinations(nums,i)
         small_firsts = []
+        remainings = []
 
         for first in firsts:
 
@@ -15,6 +16,7 @@ def split(nums, n, inner = False):
 
             if sum(remaining) == (n-1)*sum(first):
                 small_firsts.append(first)
+                remainings.append(remaining)
                 if inner:
                     break
 
@@ -23,9 +25,9 @@ def split(nums, n, inner = False):
             if n == 2:
                 return True
 
-            elif split(remaining, n-1, True):
+            elif split(remainings[0], n-1, True):
                 return small_firsts
-                
+
     return None
 
 def main():
@@ -35,7 +37,7 @@ def main():
         for line in input_file:
             nums.append(int(line.rstrip('\n')))
 
-    packages = split(nums, 3)
+    packages = split(nums, 4)
 
     ideal_qe = None
     for package in packages:
