@@ -1,5 +1,5 @@
 # Advent
-Advent of Code solutinos 
+Advent of Code 
 https://adventofcode.com/
 
-Programs written in C++ and Python
+Programs solved in C++ and Python
