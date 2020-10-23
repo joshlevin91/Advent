@@ -9,7 +9,7 @@ int main(){
 }
 
 long int CodeAtLoc(const int row, const int column, long int code, int n){
-	
+
 	int i = n + 1;
 	int j = 0;
 
@@ -28,5 +28,4 @@ long int CodeAtLoc(const int row, const int column, long int code, int n){
 	else {
 		return CodeAtLoc(row, column, code, n + 1);
 	}
-
 }
