@@ -31,19 +31,16 @@ def main():
 						byr = int(value)
 						if byr >= 1920 and byr <= 2002:
 							passport_fields[field] = True
-							# print(byr)
 
 					elif field == "iyr":
 						iyr = int(value)
 						if iyr >= 2010 and iyr <= 2020:
 							passport_fields[field] = True		
-							# print(iyr)
 
 					elif field == "eyr":
 						eyr = int(value)
 						if eyr >= 2020 and eyr <= 2030:
 							passport_fields[field] = True		
-							# print(eyr)
 
 					elif field == "hgt":
 
@@ -52,32 +49,27 @@ def main():
 							num = int(result.group(1))
 							if num >= 150 and num <= 193:
 								passport_fields[field] = True	
-								# print(num)
 
 						elif "in" in value:
 							result = re.search('(.*)in', value)
 							num = int(result.group(1))
 							if num >= 59 and num <= 76:
 								passport_fields[field] = True	
-								# print(num)
 
 					elif field == "hcl":
 						result = re.match("\A#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]", value)
 						if result is not None and result.group(0) == value:
 							passport_fields[field] = True	
-							# print(result.group(0))
 
 					elif field == "ecl":
 						result = re.match("amb|blu|brn|gry|grn|hzl|oth", value)
 						if result is not None and result.group(0) == value:
 							passport_fields[field] = True	
-							# print(result.group(0))
 
 					elif field == "pid":
 						result = re.match("\d{9}", value)
 						if result is not None and result.group(0) == value:
 							passport_fields[field] = True	
-							# print(result.group(0))
 					
 	print(valid_passports)
 
