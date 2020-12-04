@@ -11,13 +11,10 @@ def main():
 
 			if not line: 
 
-				# If all fields are present
 				if all(field_present == True for field_present in passport_fields.values()):
 					valid_passports += 1
 
-				# Reset all fields to not present
 				passport_fields = dict.fromkeys(passport_fields, False)
-
 				continue
 
 			for field in passport_fields.keys():
@@ -43,7 +40,6 @@ def main():
 							passport_fields[field] = True		
 
 					elif field == "hgt":
-
 						if "cm" in value:
 							result = re.search('(.*)cm', value)
 							num = int(result.group(1))
@@ -57,7 +53,7 @@ def main():
 								passport_fields[field] = True	
 
 					elif field == "hcl":
-						result = re.match("^\A#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$", value)
+						result = re.match("^\A#[0-9a-f]{6}$", value)
 						if result is not None:
 							passport_fields[field] = True	
 
