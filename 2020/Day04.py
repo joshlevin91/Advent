@@ -57,18 +57,18 @@ def main():
 								passport_fields[field] = True	
 
 					elif field == "hcl":
-						result = re.match("\A#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]", value)
-						if result is not None and result.group(0) == value:
+						result = re.match("^\A#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]$", value)
+						if result is not None:
 							passport_fields[field] = True	
 
 					elif field == "ecl":
-						result = re.match("amb|blu|brn|gry|grn|hzl|oth", value)
-						if result is not None and result.group(0) == value:
+						result = re.match("^amb|blu|brn|gry|grn|hzl|oth$", value)
+						if result is not None:
 							passport_fields[field] = True	
 
 					elif field == "pid":
-						result = re.match("\d{9}", value)
-						if result is not None and result.group(0) == value:
+						result = re.match("^\d{9}$", value)
+						if result is not None:
 							passport_fields[field] = True	
 					
 	print(valid_passports)
