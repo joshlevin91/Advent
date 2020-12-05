@@ -11,7 +11,6 @@ def binop(lowest, highest, ops):
 	else:
 		return binop(lowest + (highest - lowest + 1)/2, highest, ops[1:])
 
-
 open_seat_IDs = [ID(row, col) for row in range(128) for col in range(8)]
 
 highest_ID = 0
