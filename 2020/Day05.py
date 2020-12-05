@@ -19,8 +19,8 @@ taken_seat_IDs = []
 
 lines = open("Day05.txt", 'r').read().split('\n')
 for line in lines:
-	row = binop(0, 127, re.sub('B', 'U', re.sub('F', 'L', line[0:7])))
-	col = binop(0, 7, re.sub('R', 'U', line[7:10]))
+	row = binop(0, 127, re.sub('F', 'L', line[0:7]))
+	col = binop(0, 7, line[7:10])
 	highest_ID = max(highest_ID, ID(row, col))
 	open_seat_IDs.remove(ID(row,col))
 	taken_seat_IDs.append(ID(row,col))
