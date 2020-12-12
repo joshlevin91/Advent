@@ -1,8 +1,8 @@
-path = {}
+solved = {}
 
 def paths(n):
-    if n in path:
-        return path[n]
+    if n in solved:
+        return solved[n]
     if n == 0:
         return 1
     res = 0
@@ -11,7 +11,7 @@ def paths(n):
             res += paths(n-i)
         else:
             break
-    path[n] = res
+    solved[n] = res
     return res
 
 lines = open('Day10.txt', 'r').readlines()
