@@ -78,4 +78,3 @@ for i in instructions:
 
 print(abs(ferry.east) + abs(ferry.north)) #p1
 print(abs(pair.ferry.east) + abs(pair.ferry.north)) #p2
-
