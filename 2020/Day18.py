@@ -13,11 +13,11 @@ def parse_to_list(s, i=0):
             i += 1
     return i, result
 
-def wrapper(l):
+def helper(l):
     if type(l) is not list:
         return l
     for idx, item in enumerate(l):
-        l[idx] = wrapper(item)
+        l[idx] = helper(item)
     return parentheses_around_addition(l)
 
 def parentheses_around_addition(l):
@@ -49,6 +49,6 @@ with open('Day18.txt') as file:
 total = 0
 for line in lines:
     _, eq = parse_to_list(line)
-    eq = wrapper(eq) #p2
+    eq = helper(eq) #p2
     total += evaluate(eq)
 print(total)
