@@ -1,5 +1,3 @@
-import copy
-
 def parse_to_list(s, i=0):
     result = []
     while i < len(s):
