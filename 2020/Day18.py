@@ -14,8 +14,8 @@ def parse_to_list(s, i=0):
 def helper(l):
     if type(l) is not list:
         return l
-    for idx, item in enumerate(l):
-        l[idx] = helper(item)
+    for i, item in enumerate(l):
+        l[i] = helper(item)
     return parentheses_around_addition(l)
 
 def parentheses_around_addition(l):
