@@ -16,19 +16,27 @@ def check(rules, key, msg, i=0):
         else:
             return False, i
 
-    if '|' in rules[key] and len(rules[key]) == 5:
-        new_keys = rules[key]
-        c1, i1 = check(rules, new_keys[0], msg, i)
-        c2, i2 = check(rules, new_keys[1], msg, i1)
-        c3, i3 = check(rules, new_keys[3], msg, i)
-        c4, i4 = check(rules, new_keys[4], msg, i1)
-        return (c1 and c2) or (c3 and c4), i2
+    if '|' in rules[key]:
+        left_keys = [k for idx, k in enumerate(rules[key]) if idx < rules[key].index('|')]
+        right_keys = [k for idx, k in enumerate(rules[key]) if idx > rules[key].index('|')]
 
-    elif '|' in rules[key]:
-        new_keys = rules[key]
-        c1, i1 = check(rules, new_keys[0], msg, i)
-        c2, i2 = check(rules, new_keys[2], msg, i)
-        return c1 or c2, i1
+        res = True
+        ix = i
+        for rule in left_keys:
+            cx, ix = check(rules, rule, msg, ix)
+            if not cx:
+                res = False
+        left = [res, ix]
+
+        res = True
+        ix = i
+        for rule in right_keys:
+            cx, ix = check(rules, rule, msg, ix)
+            if not cx:
+                res = False
+        right = [res, ix]
+
+        return left[0] or right[0], ix
 
     else:
         res = True
