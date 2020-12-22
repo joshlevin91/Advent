@@ -16,6 +16,7 @@ def check_side(rules, msg, i, keys):
     return side
 
 def check(rules, key, msg, i=0):
+    # print(rules[key])
 
     if rules[key] == ['"a"']:
         if i >= len(msg):
@@ -34,11 +35,14 @@ def check(rules, key, msg, i=0):
             return False, i+1, True
 
     if '|' in rules[key]:
+        # print('oh hey')
         left_keys = [k for idx, k in enumerate(rules[key]) if idx < rules[key].index('|')]
         left = check_side(rules, msg, i, left_keys)
 
         right_keys = [k for idx, k in enumerate(rules[key]) if idx > rules[key].index('|')]
         right = check_side(rules, msg, i, right_keys)
+
+        # print('lr:', left_keys, right_keys)
 
         if left[0]:
             return left
