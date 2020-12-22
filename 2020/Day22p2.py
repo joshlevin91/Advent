@@ -30,10 +30,10 @@ def game(d1, d2):
                 d2.append(t2)
                 d2.append(t1)
 
-        if str(d1) + ' ' + str(d2) in rounds:
+        if (tuple(d1), tuple(d2)) in rounds:
             return 1, d1
 
-        rounds.add(str(d1.copy()) + ' ' + str(d2.copy()))
+        rounds.add((tuple(d1), tuple(d2)))
 
     if d1:
         return 1, d1
