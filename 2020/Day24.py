@@ -38,10 +38,9 @@ with open('Day24.txt') as file:
 
 for line in lines:
     pos = [0, 0, 0]
-    while line:
-        dr = re.search('^(e|se|sw|w|nw|ne)', line).group(1)
-        line = re.sub('^(e|se|sw|w|nw|ne)', '', line)
-        pos = move(pos, dr)
+    ways = re.findall('(e|se|sw|w|nw|ne)', line)
+    for way in ways:
+        pos = move(pos, way)
     pos = tuple(pos)
     if pos not in tiles:
         tiles.add(pos)
