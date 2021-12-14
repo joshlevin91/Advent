@@ -9,8 +9,6 @@
 using namespace std;
 using Board = vector<vector<pair<int, bool>>>;
 
-void mark_board(Board& board, const int n);
-
 void mark_board(Board& board, const int ncheck) {
     for (auto& row : board) {
         for (auto& n : row) {
