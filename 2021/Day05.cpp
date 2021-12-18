@@ -60,6 +60,42 @@ int main(){
                     vents[c]++;
                 }
             }       
+        } else {
+            bool xinc = true;
+            bool yinc = true;
+            if (x1 > x2) {
+                xinc = false;
+            }
+            if (y1 > y2) {
+                yinc = false;
+            }
+
+            int x = x1, y = y1;
+            while (true) {
+                coord c = std::make_pair(x, y);
+                if (!vents.count(c)) {
+                    vents[c] = 1;
+                } else {
+                    if (vents[c] == 1) {
+                        count++;
+                    }
+                    vents[c]++;
+                }
+
+                if (xinc) {
+                    x++;
+                } else {
+                    x--;
+                }
+                if (yinc) {
+                    y++;
+                } else {
+                    y--;
+                }
+                if ((xinc && x > x2) || (!xinc && x < x2)) {
+                    break;
+                }
+            }             
         }
 	}
     
